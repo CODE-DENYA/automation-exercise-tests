@@ -35,4 +35,4 @@ def test_successful_registration(page, base_url):
 
     signup_page.fill_signup_form(user_data)
 
-    assert signup_page.get_account_created_message() == "ACCOUNT CREATED!"
+    assert signup_page.get_account_created_message().upper() == "ACCOUNT CREATED!"

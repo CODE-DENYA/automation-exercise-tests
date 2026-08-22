@@ -21,6 +21,9 @@ def test_full_checkout_flow(page, base_url):
     login_page.open_login_page()
     login_page.start_signup(user_data["name"], user_data["email"])
     signup_page.fill_signup_form(user_data)
+    
+    # Авторизация в сессии после создания аккаунта
+    signup_page.click_continue()
 
     # 2. Добавление товара
     products_page.open_products_page()
