@@ -1,7 +1,7 @@
-import time
 import allure
 from pages.login_page import LoginPage
 from pages.signup_page import SignupPage
+from utils.data_generator import generate_user_data
 
 
 @allure.feature("Авторизация")
@@ -25,27 +25,13 @@ def test_login_with_invalid_credentials(page, base_url):
 @allure.feature("Регистрация")
 @allure.story("Успешная регистрация нового пользователя")
 def test_successful_registration(page, base_url):
-    unique_email = f"user_{int(time.time())}@test.com"
-    user_data = {
-        "password": "Password123!",
-        "day": "15",
-        "month": "5",
-        "year": "1995",
-        "first_name": "Test",
-        "last_name": "User",
-        "address": "123 Main Street",
-        "country": "United States",
-        "state": "California",
-        "city": "Los Angeles",
-        "zipcode": "90001",
-        "mobile_number": "+1234567890",
-    }
+    user_data = generate_user_data()
 
     login_page = LoginPage(page, base_url)
     signup_page = SignupPage(page, base_url)
 
     login_page.open_login_page()
-    login_page.start_signup("Test User", unique_email)
+    login_page.start_signup(user_data["name"], user_data["email"])
 
     signup_page.fill_signup_form(user_data)
 
