@@ -43,10 +43,13 @@ def test_register_with_existing_email(login_page: LoginPage, signup_page: Signup
     login_page.start_signup(user_data["name"], user_data["email"])
     signup_page.fill_signup_form(user_data)
 
-    # 2. Попытка повторной регистрации на тот же email
+    # 2. Очистка сессии (выход из аккаунта)
+    login_page.page.context.clear_cookies()
+
+    # 3. Попытка повторной регистрации на тот же email
     login_page.open_login_page()
     login_page.start_signup("Another Name", user_data["email"])
 
-    # 3. Проверка сообщения об ошибке
+    # 4. Проверка сообщения об ошибке
     signup_error_msg = login_page.page.locator("form[action='/signup'] p")
     expect(signup_error_msg).to_contain_text("Email Address already exist!")
