@@ -1,24 +1,22 @@
 import allure
+from playwright.sync_api import Page, expect
 from pages.products_page import ProductsPage
 
 
 @allure.feature("Каталог товаров")
 @allure.story("Открытие каталога")
-def test_open_products_page(page, base_url):
-    products_page = ProductsPage(page, base_url)
+def test_open_products_page(page: Page, products_page: ProductsPage):
     products_page.open_products_page()
 
-    assert "Automation Exercise - All Products" in products_page.get_title()
-    assert products_page.get_products_count() > 0
+    expect(page).to_have_title("Automation Exercise - All Products")
+    expect(products_page.product_items.first).to_be_visible()
 
 
 @allure.feature("Каталог товаров")
 @allure.story("Поиск товара через поисковую строку")
-def test_search_product(page, base_url):
-    products_page = ProductsPage(page, base_url)
+def test_search_product(products_page: ProductsPage):
     products_page.open_products_page()
-
     products_page.search_product("dress")
 
-    assert "SEARCHED PRODUCTS" in products_page.get_searched_title_text().upper()
-    assert products_page.get_products_count() > 0
+    expect(products_page.searched_title).to_have_text("SEARCHED PRODUCTS", ignore_case=True)
+    expect(products_page.product_items.first).to_be_visible()
