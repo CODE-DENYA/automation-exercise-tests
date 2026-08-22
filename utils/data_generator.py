@@ -1,12 +1,16 @@
+import uuid
 from faker import Faker
 
 fake = Faker("en_US")
 
 
 def generate_user_data() -> dict:
+    # Генерируем уникальный суффикс через uuid, чтобы email гарантированно не повторялся
+    unique_id = uuid.uuid4().hex[:8]
+
     return {
         "name": fake.name(),
-        "email": fake.email(),
+        "email": f"test_{unique_id}_{fake.email()}",
         "password": fake.password(length=12),
         "day": str(fake.random_int(min=1, max=28)),
         "month": str(fake.random_int(min=1, max=12)),
