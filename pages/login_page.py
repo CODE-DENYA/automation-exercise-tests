@@ -33,6 +33,7 @@ class LoginPage(BasePage):
         self.signup_name_input.fill(name)
         self.signup_email_input.fill(email)
         self.signup_button.click()
+        self.page.wait_for_url("**/signup*")
 
     @allure.step("Получить текст ошибки авторизации")
     def get_login_error_message(self) -> str:
