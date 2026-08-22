@@ -13,10 +13,15 @@ def base_url():
 
 @pytest.fixture(autouse=True)
 def block_ads(page):
-    # Блокируем рекламные сервисы и Google Vignette, блокирующие элементы
-    page.route("**/*google*", lambda route: route.abort())
-    page.route("**/*doubleclick*", lambda route: route.abort())
-    page.route("**/*adservice*", lambda route: route.abort())
+    # Блокируем только рекламные домены, не затрагивая системные сервисы Google
+    ad_domains = [
+        "**/*googlesyndication.com/**",
+        "**/*doubleclick.net/**",
+        "**/*adservice.google.com/**",
+        "**/*pagead2.googlesyndication.com/**",
+    ]
+    for domain in ad_domains:
+        page.route(domain, lambda route: route.abort())
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
