@@ -41,16 +41,22 @@ jobs:
           path: allure-results/
           retention-days: 7
 
-      - name: Генерация Allure Report
-        uses: simple-elf/allure-report-action@v1.7
+      - name: Установка Java (требуется для Allure)
+        uses: actions/setup-java@v4
         if: always()
         with:
-          allure_results: allure-results
-          allure_history: allure-history
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Генерация Allure Report (Node.js)
+        if: always()
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure generate allure-results -o allure-report --clean
 
       - name: Публикация отчета на GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
+          publish_dir: allure-report
