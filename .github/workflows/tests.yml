@@ -27,11 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Проверка стиля и качества кода (Ruff)
+        run: ruff check .
+
       - name: Установка Playwright и браузеров
         run: npx playwright install --with-deps chromium
 
-      - name: Запуск тестов
-        run: pytest --alluredir=allure-results
+      - name: Запуск тестов (Параллельно)
+        run: pytest -n auto --alluredir=allure-results
 
       - name: Сохранение артефактов Allure
         if: always()
