@@ -54,7 +54,7 @@ automation-exercise-tests/
 
 ### 1. Клонирование репозитория и установка зависимостей
 ```bash
-git clone [https://github.com/CODE-DENYA/automation-exercise-tests.git](https://github.com/CODE-DENYA/automation-exercise-tests.git)
+git clone https://github.com/CODE-DENYA/automation-exercise-tests.git
 cd automation-exercise-tests
 
 python -m venv venv
