@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Allure reports
+allure-results/
+allure-report/
+
+# VS Code settings
+.vscode/
