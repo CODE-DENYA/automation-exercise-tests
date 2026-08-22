@@ -11,6 +11,14 @@ def base_url():
     return os.getenv("BASE_URL", "https://automationexercise.com")
 
 
+@pytest.fixture(autouse=True)
+def block_ads(page):
+    # Блокируем рекламные сервисы и Google Vignette, блокирующие элементы
+    page.route("**/*google*", lambda route: route.abort())
+    page.route("**/*doubleclick*", lambda route: route.abort())
+    page.route("**/*adservice*", lambda route: route.abort())
+
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
