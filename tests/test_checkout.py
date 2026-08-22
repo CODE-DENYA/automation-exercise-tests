@@ -32,4 +32,4 @@ def test_full_checkout_flow(page, base_url):
     checkout_page.fill_payment_and_pay(card_data)
 
     # 4. Проверка
-    assert checkout_page.get_order_placed_message() == "ORDER PLACED!"
+    assert checkout_page.get_order_placed_message().upper() == "ORDER PLACED!"

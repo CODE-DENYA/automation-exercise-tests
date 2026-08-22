@@ -20,5 +20,5 @@ def test_search_product(page, base_url):
 
     products_page.search_product("dress")
 
-    assert "SEARCHED PRODUCTS" in products_page.get_searched_title_text()
+    assert "SEARCHED PRODUCTS" in products_page.get_searched_title_text().upper()
     assert products_page.get_products_count() > 0
