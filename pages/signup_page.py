@@ -31,7 +31,10 @@ class SignupPage(BasePage):
 
     @allure.step("Заполнить форму регистрации")
     def fill_signup_form(self, user_data: dict):
-        self.gender_mr_radio.wait_for(state="visible", timeout=10000)
+        # Закрываем баннер cookie, если он появился после перехода
+        self.handle_consent_banner()
+        
+        # Playwright сам дождется доступности радиобаттона перед кликом
         self.gender_mr_radio.check()
         self.password_input.fill(user_data["password"])
         self.days_select.select_option(user_data["day"])
