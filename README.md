@@ -97,19 +97,29 @@ automation-exercise-tests/
 
 ## 🚀 Локальный запуск
 
-### 1. Клонирование репозитория и установка зависимостей
+### На Windows (PowerShell):
 ```bash
 git clone https://github.com/CODE-DENYA/automation-exercise-tests.git
 cd automation-exercise-tests
 
 python -m venv venv
-source venv/bin/activate  # На Windows: venv\Scripts\activate
-
+venv\Scripts\activate
 pip install -r requirements.txt
 npx playwright install chromium
 ```
 
-### 2. Запуск тестов
+### На macOS / Linux / Git Bash:
+```bash
+git clone https://github.com/CODE-DENYA/automation-exercise-tests.git
+cd automation-exercise-tests
+
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+npx playwright install chromium
+```
+
+### Запуск тестов
 * **Запуск всех тестов в 2 потока:**
   ```bash
   pytest -n 2
