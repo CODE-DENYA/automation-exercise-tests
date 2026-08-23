@@ -1,5 +1,6 @@
 import allure
 from playwright.sync_api import expect
+
 from pages.product_details_page import ProductDetailsPage
 
 

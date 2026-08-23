@@ -1,5 +1,5 @@
-from playwright.sync_api import Page, Locator
 import allure
+from playwright.sync_api import Error, Locator, Page
 
 
 class BasePage:
@@ -18,7 +18,7 @@ class BasePage:
         try:
             if consent_button.is_visible(timeout=3000):
                 consent_button.click()
-        except Exception:
+        except Error:
             pass
 
     @allure.step("Открыть страницу: {path}")

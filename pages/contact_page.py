@@ -1,5 +1,6 @@
-from playwright.sync_api import Page, Locator
 import allure
+from playwright.sync_api import Locator, Page
+
 from pages.base_page import BasePage
 
 
@@ -26,7 +27,7 @@ class ContactPage(BasePage):
         email: str,
         subject: str,
         message: str,
-        file_path: str = None,
+        file_path: str | None = None,
     ):
         self.name_input.fill(name)
         self.email_input.fill(email)

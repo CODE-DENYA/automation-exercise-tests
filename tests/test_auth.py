@@ -1,5 +1,6 @@
 import allure
 from playwright.sync_api import Page, expect
+
 from pages.login_page import LoginPage
 from pages.signup_page import SignupPage
 from utils.data_generator import generate_user_data

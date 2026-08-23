@@ -1,10 +1,11 @@
 import allure
 from playwright.sync_api import expect
-from pages.login_page import LoginPage
-from pages.signup_page import SignupPage
-from pages.products_page import ProductsPage
+
 from pages.checkout_page import CheckoutPage
-from utils.data_generator import generate_user_data, generate_card_data
+from pages.login_page import LoginPage
+from pages.products_page import ProductsPage
+from pages.signup_page import SignupPage
+from utils.data_generator import generate_card_data, generate_user_data
 
 
 @allure.feature("Оформление заказа")
